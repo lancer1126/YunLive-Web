@@ -8,6 +8,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@element-plus/icons-vue": "^1.1.4",
     "@silvermine/videojs-quality-selector": "^1.2.5",
     "@videojs/http-streaming": "^2.14.2",
     "artplayer": "^4.3.23",
@@ -15,12 +16,12 @@
     "artplayer-vue": "^3.5.31",
     "axios": "^0.27.2",
     "comment-core-library": "^0.11.1",
-    "compression-webpack-plugin": "^9.2.0",
+    "compression-webpack-plugin": "^6.1.1",
     "core-js": "^3.6.5",
     "danmaku": "^2.0.3",
     "douyudm": "^2.1.1",
     "dplayer": "^1.26.0",
-    "element-ui": "^2.15.8",
+    "element-plus": "^2.1.11",
     "events": "^3.3.0",
     "flv.js": "^1.6.2",
     "hls.js": "^1.1.5",
