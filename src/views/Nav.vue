@@ -1,7 +1,6 @@
 <template>
   <el-container class="nav-under-header">
     <el-aside class="nav-aside" style="width: 130px">
-
       <router-link to="/home/nav/rec" class="nav-aside-item">
         <div class="nav-aside-item-icon"><i class="iconfont icon-home"></i></div>
         <div class="nav-aside-item-words">推荐</div>
@@ -21,8 +20,12 @@
         <div class="nav-aside-item-icon"><i class="iconfont icon-favorite"></i></div>
         <div class="nav-aside-item-words">关注</div>
       </router-link>
-
     </el-aside>
+
+    <el-main id="home-main" class="home-main">
+      <router-view></router-view>
+    </el-main>
+    <el-backtop target=".home-main" />
   </el-container>
 </template>
 
@@ -43,7 +46,8 @@ export default {}
   overflow: hidden;
   position: relative;
 }
-.nav-aside-item{
+
+.nav-aside-item {
   padding-top: 10px;
   padding-bottom: 5px;
   float: left;
@@ -51,18 +55,26 @@ export default {}
   height: 30px;
   transition: all 0.1s;
 }
-.nav-aside-item:hover{
+
+.nav-aside-item:hover {
   cursor: pointer;
   transform: scale(1.3);
   font-weight: bold;
 }
-.nav-aside-item-icon{
+
+.nav-aside-item-icon {
   margin-left: 20%;
   float: left;
 }
-.nav-aside-item-words{
+
+.nav-aside-item-words {
   font-weight: lighter;
   margin-left: 12px;
   float: left;
+}
+
+.home-main {
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 </style>
