@@ -5,27 +5,27 @@
         <div class="nav-aside-item-icon"><i class="iconfont icon-home"></i></div>
         <div class="nav-aside-item-words">推荐</div>
       </router-link>
-
       <router-link to="/home/nav/plt" class="nav-aside-item">
         <div class="nav-aside-item-icon"><i class="iconfont icon-modular"></i></div>
         <div class="nav-aside-item-words">平台</div>
       </router-link>
-
       <router-link to="/home/nav/area" class="nav-aside-item">
         <div class="nav-aside-item-icon"><i class="iconfont icon-fenlei"></i></div>
         <div class="nav-aside-item-words">分区</div>
       </router-link>
-
       <router-link to="/home/nav/fw" class="nav-aside-item">
         <div class="nav-aside-item-icon"><i class="iconfont icon-favorite"></i></div>
         <div class="nav-aside-item-words">关注</div>
       </router-link>
     </el-aside>
-
     <el-main id="home-main" class="home-main">
-      <router-view></router-view>
+      <router-view v-slot="{ Component }">
+        <keep-alive>
+          <component :is="Component" />
+        </keep-alive>
+      </router-view>
     </el-main>
-    <el-backtop target=".home-main" />
+    <el-backtop target=".home-main"/>
   </el-container>
 </template>
 

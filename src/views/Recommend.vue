@@ -1,8 +1,8 @@
 <template>
   <div v-loading="loading" element-loading-background="rgba(243, 246, 248, 0.8)" class="rec-container">
     <div class="rec-big-word">首页推荐</div>
+    <el-switch class="blank-switch" v-model="newBlank" inactive-text="新标签打开" @change="blankChange"></el-switch>
     <div class="rec-menu">
-      <el-switch class="blank-switch" v-model="newBlank" inactive-text="新标签打开" @change="blankChange"></el-switch>
       <CoverRow ref="coverRow" :cover-list="coverList"/>
     </div>
   </div>
@@ -58,8 +58,8 @@ export default {
 
 .rec-big-word {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 18px;
+  left: 210px;
   right: 0;
   font-weight: bold;
   font-size: 40px;
@@ -75,7 +75,7 @@ export default {
 
 .blank-switch {
   position: absolute;
-  top: -30px;
-  right: 180px;
+  top: 40px;
+  right: 200px;
 }
 </style>

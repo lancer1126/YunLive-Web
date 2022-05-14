@@ -45,14 +45,12 @@
         </div>
       </div>
     </el-header>
-    <keep-alive include="Nav">
-      <router-view
-          @existSearch="existSearch"
-          @inSearch="!existSearch"
-          :isLogin="isLogin"
-          :userInfo="userInfo">
-      </router-view>
-    </keep-alive>
+    <router-view v-slot="{ Component }" @existSearch="existSearch" @inSearch="!existSearch"
+                 :isLogin="isLogin" :userInfo="userInfo">
+      <keep-alive>
+        <component :is="Component"/>
+      </keep-alive>
+    </router-view>
   </el-container>
 </template>
 
@@ -140,6 +138,7 @@ export default {
   right: 120px;
   transition: all 0.1s;
 }
+
 .top-follow:hover {
   cursor: pointer;
   transform: scale(1.2);
@@ -168,7 +167,8 @@ export default {
   font-weight: 600;
   transition: all 0.1s;
 }
-.to-login:hover{
+
+.to-login:hover {
   transform: scale(1.2);
 }
 

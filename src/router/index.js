@@ -22,6 +22,11 @@ const routes = [
                         component: () => import('@/views/Recommend')
                     }
                 ]
+            },
+            {
+                path: '/home/liveRoom',
+                name: 'liveRoom',
+                component: () => import('@/views/LiveRoom')
             }
         ]
     }
