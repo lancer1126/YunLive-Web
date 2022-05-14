@@ -1,9 +1,9 @@
 <template>
   <div v-loading="loading" element-loading-background="rgba(243, 246, 248, 0.8)" class="rec-container">
     <div class="rec-big-word">首页推荐</div>
-    <el-switch class="blank-switch" v-model="newBlank" inactive-text="新标签打开" @change="blankChange"></el-switch>
+    <el-switch class="blank-switch" v-model="newBlank" inactive-text="新标签打开" @change="blankChange" />
     <div class="rec-menu">
-      <CoverRow ref="coverRow" :cover-list="coverList"/>
+      <CoverRow ref="coverRow" :cover-list="coverList" :new-blank="newBlank"/>
     </div>
   </div>
 </template>
@@ -18,7 +18,7 @@ export default {
   data() {
     return {
       loading: false,
-      newBlank: true,
+      newBlank: false,
       videoElement: null,
       coverList: []
     }
@@ -76,6 +76,6 @@ export default {
 .blank-switch {
   position: absolute;
   top: 40px;
-  right: 200px;
+  right: 210px;
 }
 </style>

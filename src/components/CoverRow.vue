@@ -3,7 +3,7 @@
     <el-col class="rec-room-col" :xs="20" :sm="10" :md="8" :lg="6" :xl="6"
             v-for="(cover, index) in coverList" :key="index">
       <router-link :to="{path: '/home/liveRoom,', query: {platform: cover.platform, roomId: cover.roomId}}"
-                   :target="openBlank">
+                   :target="openBlank()">
         <el-card shadow="hover" class="rec-room-card">
           <div class="rec-room-pic">
             <div class="pic-bottom">
@@ -35,17 +35,16 @@
 export default {
   name: 'CoverRow',
   components: {},
-  props: ['coverList'],
+  props: ['coverList','newBlank'],
   data() {
     return {
-      newBlank: true,
       loading: false,
       fit: 'cover'
     }
   },
   methods: {
     openBlank() {
-      return this.openBlank() ? '_blank' : '_self';
+      return this.newBlank ? '_blank' : '_self';
     },
     handleOnline(online) {
       let num = online.toString().trim()
@@ -58,8 +57,14 @@ export default {
       }
     },
     getPlatform(platform) {
-      if (platform === 'bili')
-        return 'bili'
+      switch (platform) {
+        case 'bilibili':
+          return '哔哩哔哩'
+        case 'douyu':
+          return '斗鱼'
+        case 'huya':
+          return '虎牙'
+      }
     }
   }
 }
@@ -84,7 +89,7 @@ export default {
 .rec-room-card {
   margin: 0 auto;
   position: relative;
-  height: 240px;
+  height: 250px;
   width: 420px;
   transition: all 0.2s;
   border-radius: 20px;
@@ -97,7 +102,7 @@ export default {
 
 .rec-room-pic {
   width: 100%;
-  height: 188px;
+  height: 200px;
   position: relative;
   z-index: 1;
   box-shadow: inset 0 -10px 0 -10px #000000;
@@ -139,16 +144,16 @@ export default {
 .rec-room-under {
   position: relative;
   width: 100%;
-  height: 55px;
-  background-color: #ece9e9;
+  height: 52px;
+  background-color: #f6f4f4;
 }
 
 .rec-room-info-head {
   margin-left: 10px;
   margin-top: 9px;
   float: left;
-  width: 36px;
-  height: 36px;
+  width: 35px;
+  height: 35px;
 }
 
 .rec-room-info {
