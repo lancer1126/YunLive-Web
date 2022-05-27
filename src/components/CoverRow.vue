@@ -2,7 +2,7 @@
   <el-row class="rec-room-row" :gutter="20">
     <el-col class="rec-room-col" :xs="20" :sm="10" :md="8" :lg="6" :xl="6"
             v-for="(cover, index) in coverList" :key="index">
-      <router-link :to="{path: '/home/liveRoom,', query: {platform: cover.platform, roomId: cover.roomId}}"
+      <router-link :to="{path: '/home/liveRoom', query: {platform: cover.platform, roomId: cover.roomId}}"
                    :target="openBlank()">
         <el-card shadow="hover" class="rec-room-card">
           <div class="rec-room-pic">
@@ -74,8 +74,8 @@ export default {
 .rec-room-row {
   overflow: hidden;
   padding-bottom: 40px;
-  padding-left: 150px;
-  padding-right: 150px;
+  padding-left: 200px;
+  padding-right: 200px;
 }
 
 .rec-room-col {
@@ -89,8 +89,8 @@ export default {
 .rec-room-card {
   margin: 0 auto;
   position: relative;
-  height: 250px;
-  width: 420px;
+  height: 99%;
+  width: 85%;
   transition: all 0.2s;
   border-radius: 20px;
 }
