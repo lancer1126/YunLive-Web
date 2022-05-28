@@ -66,6 +66,7 @@ export default {
                 this.huyaAyyuid = data.ayyuid
               }
               this.quality = this.initQuality(data)
+              _this.videoType = this.quality[this.quality.length - 1].url.indexOf('m3u8') > 0 ? 'customHls' : 'flv'
 
               let art = this.initPlayer(_this)
               if (_this.videoType === 'customHls') {
@@ -108,19 +109,19 @@ export default {
       let tempQuality = []
       const hasOwn = Object.prototype.hasOwnProperty
       if (hasOwn.call(data, 'fd')) {
-        tempQuality.push({name: '流畅', url: data.fd})
+        tempQuality.push({html: '流畅', url: data.fd})
       }
       if (hasOwn.call(data, 'ld')) {
-        tempQuality.push({name: '清晰', url: data.ld})
+        tempQuality.push({html: '清晰', url: data.ld})
       }
       if (hasOwn.call(data, 'sd')) {
-        tempQuality.push({name: '高清', url: data.sd})
+        tempQuality.push({html: '高清', url: data.sd})
       }
       if (hasOwn.call(data, 'hd')) {
-        tempQuality.push({name: '超清', url: data.hd})
+        tempQuality.push({html: '超清', url: data.hd})
       }
       if (hasOwn.call(data, 'od')) {
-        tempQuality.push({name: '原画', url: data.od})
+        tempQuality.push({html: '原画', url: data.od, default: true})
       }
       return tempQuality
     },
@@ -135,10 +136,10 @@ export default {
         autoMini: true, //自动小窗播放
         pip: true,  //画中画
         fullscreen: true, //全屏按钮
-        aspectRatio: true,  //
+        aspectRatio: true,
         fullscreenWeb: true,  //网页全屏按钮
         backdrop: true,
-        lang: 'zh-cn',  //
+        lang: 'zh-cn',
         quality: this.quality,
         customType: {
           customHls(video, url) {
@@ -157,22 +158,24 @@ export default {
             _this.flv = flvPlayer
           }
         },
-        controls: {
-          tooltip: '弹幕开关',
-          position: 'right',
-          html: '<i class="iconfont icon-danmukaiqi" style="font-size: 25px"></i>',
-          click() {
-            _this.danmakuShow = !_this.danmakuShow
-            if (_this.danmakuShow) {
-              document.getElementsByClassName("iconfont icon-danmuguanbi")[0]
-                  .setAttribute("class", "iconfont icon-danmukaiqi")
-            } else {
-              document.getElementsByClassName("iconfont icon-danmukaiqi")[0]
-                  .setAttribute("class", "iconfont icon-danmuguanbi");
-              _this.danmaku.hide()
+        controls: [
+          {
+            tooltip: '弹幕开关',
+            position: 'right',
+            html: '<i class="iconfont icon-danmukaiqi" style="font-size: 25px"></i>',
+            click() {
+              _this.danmakuShow = !_this.danmakuShow
+              if (_this.danmakuShow) {
+                document.getElementsByClassName("iconfont icon-danmuguanbi")[0]
+                    .setAttribute("class", "iconfont icon-danmukaiqi")
+              } else {
+                document.getElementsByClassName("iconfont icon-danmukaiqi")[0]
+                    .setAttribute("class", "iconfont icon-danmuguanbi");
+                _this.danmaku.hide()
+              }
             }
           }
-        }
+        ]
       })
     },
     initBilibiliWs() {
@@ -219,7 +222,7 @@ export default {
         fromName: from,
         msg: text
       }
-      _this.emit('newDanmaku', newDanmaku)
+      _this.$emit('newDanmakuSend', newDanmaku)
       if (this.danmakuNumStep > 0) {
         this.danmakuNumStep--
       } else {

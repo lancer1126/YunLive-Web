@@ -1,8 +1,17 @@
 <template>
   <div class="room-main-container">
     <div class="room-left">
-      <div v-if="isLive()" class="room-left-video">
-        <YunArtPlayer/>
+      <div v-if="isLive" class="room-left-video">
+        <YunArtPlayer v-if="isLive" class="room-left-video-play"
+                      @newDanmakuSend="newDanmakuSend"
+                      @notSupport="notSupport"
+                      :platform="platform"
+                      :room-id="roomId"
+                      :is-live="isLive"
+                      :danmaku-style="danmakuStyle"
+                      :danmaku-speed="danmakuSpeed"
+                      :danmaku-area="danmakuArea"
+                      :danmaku-num="danmakuNum"/>
       </div>
       <div v-else class="room-left-video-notLive">直播间未开播</div>
       <div class="room-left-info">
@@ -16,7 +25,7 @@
           <div v-if="danmakuSupport">
             <transition-group name="danmaku">
               <div class="show-danmaku" v-for="(danmaku, index) in danmakuList" :key="index">
-                <span class="danmaku-name">{{ danmaku.fromName }}</span>
+                <span class="danmaku-name">{{ danmaku.fromName }}: </span>
                 <span class="danmaku-msg">{{ danmaku.msg }}</span>
               </div>
             </transition-group>
@@ -126,6 +135,22 @@ export default {
       let target = document.getElementsByClassName("room-right-body")[0]
       this.isBottom = (target.scrollHeight - target.clientHeight) - target.scrollTop <= 10;
     },
+    newDanmakuSend(newDanmaku) {
+      let _this = this
+      if (_this.danmakuList.length >= 200) {
+        this.danmakuList.splice(0, 100)
+      }
+      this.danmakuList.push(newDanmaku)
+      _this.$nextTick(() => {
+        if (this.isBottom) {
+          let container = document.getElementsByClassName("room-right-body")[0]
+          container.scrollTop = container.scrollHeight
+        }
+      })
+    },
+    notSupport() {
+      this.danmakuSupport = false
+    }
   },
   beforeUnmount() {
     document.removeEventListener('scroll', this.handleScroll, true)
@@ -169,6 +194,11 @@ export default {
   font-size: 25px;
   color: #939495;
   background-color: black;
+}
+
+.room-left-video-play {
+  width: 100%;
+  height: 100%;
 }
 
 .room-left-info {
