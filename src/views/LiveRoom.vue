@@ -15,7 +15,26 @@
       </div>
       <div v-else class="room-left-video-notLive">直播间未开播</div>
       <div class="room-left-info">
-
+        <div class="left-info-head">
+          <el-image :src="roomInfo.ownerHeadPic" :preview-src-list="getPreList(roomInfo.ownerHeadPic)"/>
+        </div>
+        <div class="left-info-profile">
+          <div class="left-info-profile-name">{{ roomInfo.roomName }}
+            <div :class="isLive ? 'info-live' : 'info-notLive'">{{ isLive ? '直播中' : '未开播' }}</div>
+          </div>
+          <div class="left-info-profile-owner">{{ getPlatform(platform) }} - {{ roomInfo.ownerName }}</div>
+        </div>
+        <div class="left-info-right">
+          <div class="right-link">
+            <el-tooltip effect="dark" content="跳转到直播间" placement="top">
+              <a :href="getUrl()" target="_blank">
+                <el-icon :color="getColor">
+                  <Link/>
+                </el-icon>
+              </a>
+            </el-tooltip>
+          </div>
+        </div>
       </div>
     </div>
     <div class="room-right">
@@ -41,10 +60,11 @@
 <script>
 import {getRoomInfo} from "@/api/LiveRoom";
 import YunArtPlayer from "@/components/YunArtPlayer";
+import {Link} from "@element-plus/icons-vue";
 
 export default {
   name: "LiveRoom",
-  components: {YunArtPlayer},
+  components: {YunArtPlayer, Link},
   props: ['userInfo'],
   data() {
     return {
@@ -79,6 +99,11 @@ export default {
       if (to.query.rid !== from.query.rid) {
         this.$router.go(0)
       }
+    }
+  },
+  computed: {
+    getColor() {
+      return '#9b9696'
     }
   },
   methods: {
@@ -150,6 +175,14 @@ export default {
     },
     notSupport() {
       this.danmakuSupport = false
+    },
+    getPreList(picUrl) {
+      return [picUrl]
+    },
+    getUrl() {
+      if (this.platform === 'bilibili') {
+        return 'https://live.bilibili.com/' + this.roomId
+      }
     }
   },
   beforeUnmount() {
@@ -167,7 +200,7 @@ export default {
 
 .room-left {
   position: relative;
-  width: 78%;
+  width: 82%;
   height: 100%;
 }
 
@@ -209,9 +242,71 @@ export default {
   left: 0;
 }
 
+.left-info-head {
+  float: left;
+  margin-top: 9px;
+  margin-left: 8px;
+  width: 60px;
+  height: 60px;
+  box-shadow: #2b2b2b 0 0 5px 1px;
+  border-radius: 10px;
+}
+
+.left-info-profile {
+  float: left;
+  margin-left: 10px;
+  margin-top: 8px;
+}
+
+.left-info-profile-name {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.left-info-profile-owner {
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.info-live {
+  margin-top: 5px;
+  margin-left: 8px;
+  float: right;
+  height: 18px;
+  width: 45px;
+  background-color: #c10f0f;
+  border-radius: 10px;
+  font-size: 5px;
+  font-weight: 600;
+  text-align: center;
+  color: #F3F6F8;
+}
+
+.info-notLive {
+  margin-top: 5px;
+  margin-left: 8px;
+  float: left;
+  height: 18px;
+  width: 45px;
+  background-color: #979797;
+  border-radius: 10px;
+  font-size: 5px;
+  font-weight: 600;
+  text-align: center;
+  color: #F3F6F8;
+}
+
+.left-info-right {
+  float: right;
+  margin-top: 8px;
+  margin-right: 10px;
+  font-size: 35px;
+}
+
 .room-right {
   position: fixed;
-  width: 22%;
+  width: 18%;
   height: 92%;
   top: 50px;
   right: 0;
@@ -245,7 +340,7 @@ export default {
 
 .show-danmaku {
   margin-top: 10px;
-  margin-left: 10px;
+  margin-left: 20px;
   font-size: 15px;
   width: 94%;
 }
@@ -267,5 +362,12 @@ export default {
   margin-top: 20px;
   font-weight: normal;
   text-align: center;
+}
+
+.right-link {
+  float: right;
+  margin-top: 10px;
+  margin-right: 25px;
+  transition: all 0.2s;
 }
 </style>
