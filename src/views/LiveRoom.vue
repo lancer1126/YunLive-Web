@@ -15,16 +15,16 @@
       </div>
       <div v-else class="room-left-video-notLive">直播间未开播</div>
       <div class="room-left-info">
-        <div class="left-info-head">
+        <div class="room-left-info-head">
           <el-image :src="roomInfo.ownerHeadPic" :preview-src-list="getPreList(roomInfo.ownerHeadPic)"/>
         </div>
-        <div class="left-info-profile">
-          <div class="left-info-profile-name">{{ roomInfo.roomName }}
+        <div class="room-left-info-profile">
+          <div class="room-left-info-profile-name">{{ roomInfo.roomName }}
             <div :class="isLive ? 'info-live' : 'info-notLive'">{{ isLive ? '直播中' : '未开播' }}</div>
           </div>
-          <div class="left-info-profile-owner">{{ getPlatform(platform) }} - {{ roomInfo.ownerName }}</div>
+          <div class="room-left-info-profile-owner">{{ getPlatform(platform) }} - {{ roomInfo.ownerName }}</div>
         </div>
-        <div class="left-info-right">
+        <div class="room-left-info-right">
           <div class="right-link">
             <el-tooltip effect="dark" content="跳转到直播间" placement="top">
               <a :href="getUrl()" target="_blank">
@@ -242,7 +242,7 @@ export default {
   left: 0;
 }
 
-.left-info-head {
+.room-left-info-head {
   float: left;
   margin-top: 9px;
   margin-left: 8px;
@@ -252,24 +252,24 @@ export default {
   border-radius: 10px;
 }
 
-.left-info-profile {
+.room-left-info-profile {
   float: left;
   margin-left: 10px;
   margin-top: 8px;
 }
 
-.left-info-profile-name {
+.room-left-info-profile-name {
   font-weight: bold;
   font-size: 20px;
 }
 
-.left-info-profile-owner {
+.room-left-info-profile-owner {
   margin-top: 10px;
   font-weight: bold;
   font-size: 15px;
 }
 
-.info-live {
+.room-info-live {
   margin-top: 5px;
   margin-left: 8px;
   float: right;
@@ -283,7 +283,7 @@ export default {
   color: #F3F6F8;
 }
 
-.info-notLive {
+.room-info-notLive {
   margin-top: 5px;
   margin-left: 8px;
   float: left;
@@ -297,7 +297,7 @@ export default {
   color: #F3F6F8;
 }
 
-.left-info-right {
+.room-left-info-right {
   float: right;
   margin-top: 8px;
   margin-right: 10px;
@@ -331,9 +331,28 @@ export default {
   width: 100%;
   position: absolute;
   top: 40px;
+  bottom: 0;
 }
 
-.to-bottom {
+.to-bottom{
+  position: absolute;
+  bottom: 80px;
+  background-color: rgba(54, 51, 51, 0.7);
+  font-weight: bold;
+  color: #ffffff;
+  left: 37%;
+  height: 30px;
+  border-radius: 20px;
+  width: 100px;
+  display: flex;
+  /*实现垂直居中*/
+  align-items: center;
+  /*实现水平居中*/
+  justify-content: center;
+  text-align: justify;
+}
+
+.to-bottom:hover {
   cursor: pointer;
   background-color: #4e4c4c;
 }
