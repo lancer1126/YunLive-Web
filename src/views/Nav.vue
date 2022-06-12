@@ -9,14 +9,14 @@
         <div class="nav-aside-item-icon"><i class="iconfont icon-modular"></i></div>
         <div class="nav-aside-item-words">平台</div>
       </router-link>
-      <router-link to="/home/nav/area" class="nav-aside-item">
-        <div class="nav-aside-item-icon"><i class="iconfont icon-fenlei"></i></div>
-        <div class="nav-aside-item-words">分区</div>
-      </router-link>
-      <router-link to="/home/nav/fw" class="nav-aside-item">
-        <div class="nav-aside-item-icon"><i class="iconfont icon-favorite"></i></div>
-        <div class="nav-aside-item-words">关注</div>
-      </router-link>
+<!--      <router-link to="/home/nav/area" class="nav-aside-item">-->
+<!--        <div class="nav-aside-item-icon"><i class="iconfont icon-fenlei"></i></div>-->
+<!--        <div class="nav-aside-item-words">分区</div>-->
+<!--      </router-link>-->
+<!--      <router-link to="/home/nav/fw" class="nav-aside-item">-->
+<!--        <div class="nav-aside-item-icon"><i class="iconfont icon-favorite"></i></div>-->
+<!--        <div class="nav-aside-item-words">关注</div>-->
+<!--      </router-link>-->
     </el-aside>
     <el-main id="home-main" class="home-main">
       <router-view v-slot="{ Component }">

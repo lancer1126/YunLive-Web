@@ -18,8 +18,18 @@ const routes = [
                 children: [
                     {
                         path: '/home/nav/rec',
-                        name: '推荐',
+                        name: 'recommend',
                         component: () => import('@/views/Recommend')
+                    },
+                    {
+                        path: '/home/nav/plt',
+                        name: 'platforms',
+                        component: () => import('@/views/Platforms')
+                    },
+                    {
+                        path:'/home/nav/:p',
+                        name: 'platformRoom',
+                        component: () => import('@/views/PlatformRoom')
                     }
                 ]
             },
