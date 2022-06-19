@@ -13,27 +13,27 @@
       </el-col>
     </router-link>
 
-    <router-link :to="{name: 'platformRoom', params: {p: 'douyu'}}">
-      <el-col class="platform-col" :span="11">
-        <div class="platform-pic">
-          <img src="https://imgsrc.baidu.com/forum/pic/item/297a0bfc1e178a823f26bdc2e103738da977e81c.jpg" alt="">
-        </div>
-        <div class="platform-info">
-          <div class="platform-info-title">斗鱼直播</div>
-        </div>
-      </el-col>
-    </router-link>
+<!--    <router-link :to="{name: 'platformRoom', params: {p: 'douyu'}}">-->
+<!--      <el-col class="platform-col" :span="11">-->
+<!--        <div class="platform-pic">-->
+<!--          <img src="https://imgsrc.baidu.com/forum/pic/item/297a0bfc1e178a823f26bdc2e103738da977e81c.jpg" alt="">-->
+<!--        </div>-->
+<!--        <div class="platform-info">-->
+<!--          <div class="platform-info-title">斗鱼直播</div>-->
+<!--        </div>-->
+<!--      </el-col>-->
+<!--    </router-link>-->
 
-    <router-link :to="{name: 'platformRoom', params: {p: 'huya'}}">
-      <el-col class="platform-col" :span="11">
-        <div class="platform-pic">
-          <img src="https://imgsrc.baidu.com/forum/pic/item/902397dda144ad3469d79d09dea20cf430ad85d7.jpg" alt="">
-        </div>
-        <div class="platform-info">
-          <div class="platform-info-title">虎牙直播</div>
-        </div>
-      </el-col>
-    </router-link>
+<!--    <router-link :to="{name: 'platformRoom', params: {p: 'huya'}}">-->
+<!--      <el-col class="platform-col" :span="11">-->
+<!--        <div class="platform-pic">-->
+<!--          <img src="https://imgsrc.baidu.com/forum/pic/item/902397dda144ad3469d79d09dea20cf430ad85d7.jpg" alt="">-->
+<!--        </div>-->
+<!--        <div class="platform-info">-->
+<!--          <div class="platform-info-title">虎牙直播</div>-->
+<!--        </div>-->
+<!--      </el-col>-->
+<!--    </router-link>-->
 
   </el-row>
 </template>

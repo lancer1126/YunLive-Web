@@ -40,7 +40,12 @@ export default {
       getRecommend(1, 20)
           .then(resp => {
             if (resp.data.code === 200) {
-              this.coverList = resp.data.data
+              let cs = resp.data.data
+              cs.forEach(e => {
+                if (e.platform === 'bilibili') {
+                  this.coverList.push(e)
+                }
+              })
             }
             this.loading = false
           })
