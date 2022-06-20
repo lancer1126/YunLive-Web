@@ -9,6 +9,16 @@ export const getRecommend = (page, size) => request({
     }
 })
 
+export const getRecommendByPlatform = (platform, page, size) => request({
+    url: '/api/live/recByPlatform',
+    method: 'GET',
+    params: {
+        p: platform,
+        page: page,
+        size: size
+    }
+})
+
 export const getRoomInfo = (uid, platform, roomId) => request({
     url: '/api/live/roomInfo',
     method: 'GET',
@@ -25,5 +35,13 @@ export const getRealUrl = (platform, roomId) => request({
     params: {
         p: platform,
         rid: roomId
+    }
+})
+
+export const getAreas = (platform) => request({
+    url: '/api/live/areas',
+    method: 'GET',
+    params: {
+        p: platform
     }
 })
