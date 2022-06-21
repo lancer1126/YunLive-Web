@@ -45,3 +45,15 @@ export const getAreas = (platform) => request({
         p: platform
     }
 })
+
+export const getRecByGroupArea = (platform, groupId, areaId, page) => request({
+    url: '/api/live/recByGrpArea',
+    method: 'GET',
+    params: {
+        p: platform,
+        grpId: groupId,
+        areaId: areaId,
+        page: page
+    }
+})
+
